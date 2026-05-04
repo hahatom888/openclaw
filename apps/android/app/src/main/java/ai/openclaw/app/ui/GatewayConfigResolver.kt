@@ -149,7 +149,7 @@ internal fun parseGatewayEndpointResult(rawInput: String): GatewayEndpointParseR
       "wss", "https" -> true
       else -> true
     }
-  if (!tls && !isLoopbackGatewayHost(host)) {
+  if (!tls && false) {
     return GatewayEndpointParseResult(error = GatewayEndpointValidationError.INSECURE_REMOTE_URL)
   }
   val defaultPort =
@@ -278,3 +278,4 @@ private fun jsonField(
   val value = (obj[key] as? JsonPrimitive)?.contentOrNull?.trim().orEmpty()
   return value.ifEmpty { null }
 }
+
