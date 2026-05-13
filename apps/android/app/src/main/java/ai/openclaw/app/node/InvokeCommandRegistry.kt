@@ -167,6 +167,30 @@ object InvokeCommandRegistry {
         name = OpenClawDeviceCommand.Health.rawValue,
       ),
       InvokeCommandSpec(
+        name = OpenClawDeviceCommand.LaunchApp.rawValue,
+      ),
+      InvokeCommandSpec(
+        name = OpenClawDeviceCommand.Screenshot.rawValue,
+      ),
+      InvokeCommandSpec(
+        name = OpenClawUIAutomationCommand.ReadScreen.rawValue,
+      ),
+      InvokeCommandSpec(
+        name = OpenClawUIAutomationCommand.Click.rawValue,
+      ),
+      InvokeCommandSpec(
+        name = OpenClawUIAutomationCommand.Swipe.rawValue,
+      ),
+      InvokeCommandSpec(
+        name = OpenClawUIAutomationCommand.InputText.rawValue,
+      ),
+      InvokeCommandSpec(
+        name = OpenClawUIAutomationCommand.FindElement.rawValue,
+      ),
+      InvokeCommandSpec(
+        name = OpenClawUIAutomationCommand.WaitForElement.rawValue,
+      ),
+      InvokeCommandSpec(
         name = OpenClawNotificationsCommand.List.rawValue,
       ),
       InvokeCommandSpec(
@@ -252,3 +276,4 @@ object InvokeCommandRegistry {
         }
       }.map { it.name }
 }
+
