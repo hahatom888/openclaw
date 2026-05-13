@@ -8,6 +8,7 @@ import ai.openclaw.app.protocol.OpenClawCanvasA2UICommand
 import ai.openclaw.app.protocol.OpenClawCanvasCommand
 import ai.openclaw.app.protocol.OpenClawContactsCommand
 import ai.openclaw.app.protocol.OpenClawDeviceCommand
+import ai.openclaw.app.protocol.OpenClawUIAutomationCommand
 import ai.openclaw.app.protocol.OpenClawLocationCommand
 import ai.openclaw.app.protocol.OpenClawMotionCommand
 import ai.openclaw.app.protocol.OpenClawNotificationsCommand
@@ -180,6 +181,16 @@ class InvokeDispatcher(
       OpenClawDeviceCommand.Info.rawValue -> deviceHandler.handleDeviceInfo(paramsJson)
       OpenClawDeviceCommand.Permissions.rawValue -> deviceHandler.handleDevicePermissions(paramsJson)
       OpenClawDeviceCommand.Health.rawValue -> deviceHandler.handleDeviceHealth(paramsJson)
+      OpenClawDeviceCommand.LaunchApp.rawValue -> UIAutomationHandler.instance?.handleLaunchApp(paramsJson) ?: GatewaySession.InvokeResult.error(code = "UI_AUTO_NOT_INIT", message = "UIAutomationHandler not initialized")
+      OpenClawDeviceCommand.Screenshot.rawValue -> UIAutomationHandler.instance?.handleScreenshot(paramsJson) ?: GatewaySession.InvokeResult.error(code = "UI_AUTO_NOT_INIT", message = "UIAutomationHandler not initialized")
+
+      // UI Automation commands
+      OpenClawUIAutomationCommand.ReadScreen.rawValue -> UIAutomationHandler.instance?.handleReadScreen(paramsJson) ?: GatewaySession.InvokeResult.error(code = "UI_AUTO_NOT_INIT", message = "UIAutomationHandler not initialized")
+      OpenClawUIAutomationCommand.Click.rawValue -> UIAutomationHandler.instance?.handleClick(paramsJson) ?: GatewaySession.InvokeResult.error(code = "UI_AUTO_NOT_INIT", message = "UIAutomationHandler not initialized")
+      OpenClawUIAutomationCommand.Swipe.rawValue -> UIAutomationHandler.instance?.handleSwipe(paramsJson) ?: GatewaySession.InvokeResult.error(code = "UI_AUTO_NOT_INIT", message = "UIAutomationHandler not initialized")
+      OpenClawUIAutomationCommand.InputText.rawValue -> UIAutomationHandler.instance?.handleInputText(paramsJson) ?: GatewaySession.InvokeResult.error(code = "UI_AUTO_NOT_INIT", message = "UIAutomationHandler not initialized")
+      OpenClawUIAutomationCommand.FindElement.rawValue -> UIAutomationHandler.instance?.handleFindElement(paramsJson) ?: GatewaySession.InvokeResult.error(code = "UI_AUTO_NOT_INIT", message = "UIAutomationHandler not initialized")
+      OpenClawUIAutomationCommand.WaitForElement.rawValue -> UIAutomationHandler.instance?.handleWaitForElement(paramsJson) ?: GatewaySession.InvokeResult.error(code = "UI_AUTO_NOT_INIT", message = "UIAutomationHandler not initialized")
 
       // Notifications command
       OpenClawNotificationsCommand.List.rawValue -> notificationsHandler.handleNotificationsList(paramsJson)
@@ -336,3 +347,4 @@ class InvokeDispatcher(
         }
     }
 }
+
