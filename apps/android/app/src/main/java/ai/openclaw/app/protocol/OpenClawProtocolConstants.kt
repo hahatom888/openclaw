@@ -16,6 +16,7 @@ enum class OpenClawCapability(
   Calendar("calendar"),
   Motion("motion"),
   CallLog("callLog"),
+  UIAutomation("uiAutomation"),
 }
 
 enum class OpenClawCanvasCommand(
@@ -71,6 +72,20 @@ enum class OpenClawSmsCommand(
   }
 }
 
+enum class OpenClawTalkCommand(
+  val rawValue: String,
+) {
+  PttStart("talk.ptt.start"),
+  PttStop("talk.ptt.stop"),
+  PttCancel("talk.ptt.cancel"),
+  PttOnce("talk.ptt.once"),
+  ;
+
+  companion object {
+    const val NamespacePrefix: String = "talk."
+  }
+}
+
 enum class OpenClawLocationCommand(
   val rawValue: String,
 ) {
@@ -89,10 +104,28 @@ enum class OpenClawDeviceCommand(
   Info("device.info"),
   Permissions("device.permissions"),
   Health("device.health"),
+  LaunchApp("device.launchApp"),
+  Screenshot("device.screenshot"),
   ;
 
   companion object {
     const val NamespacePrefix: String = "device."
+  }
+}
+
+enum class OpenClawUIAutomationCommand(
+  val rawValue: String,
+) {
+  ReadScreen("uiAutomation.readScreen"),
+  Click("uiAutomation.click"),
+  Swipe("uiAutomation.swipe"),
+  InputText("uiAutomation.inputText"),
+  FindElement("uiAutomation.findElement"),
+  WaitForElement("uiAutomation.waitForElement"),
+  ;
+
+  companion object {
+    const val NamespacePrefix: String = "uiAutomation."
   }
 }
 
